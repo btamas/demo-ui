@@ -48,7 +48,7 @@ import flatpickr from 'lib/flatpickr/flatpickr';
 import flatpickrLocalization from 'lib/flatpickr/l10n/index';
 import dateTimePickerTpl from 'ui/datetime/tpl/picker.tpl';
 import 'css!lib/flatpickr/flatpickr.css';
-import 'ui/datetime/css/picker.css';
+import 'ui/datetime/scss/picker.scss';
 
     'use strict';
 

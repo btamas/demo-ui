@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const handlebars = require('rollup-plugin-handlebars-plus');
 const alias = require('rollup-plugin-alias');
-const postcss = require('rollup-plugin-postcss');
+import sass from 'rollup-plugin-sass';
 import {uglify} from 'rollup-plugin-uglify';
 
 const inputs = glob.sync(path.join(__dirname, '..', 'src', '**', '*.js'));
@@ -29,7 +29,7 @@ module.exports = inputs.map(input => {
         ].concat(localExternals),
         plugins: [
             alias({
-                resolve: ['.js', '.css', '.tpl'],
+                resolve: ['.js', '.css', '.tpl', '.scss'],
                 ui: path.join(__dirname, '..', 'src')
               }),
             handlebars({
@@ -38,8 +38,10 @@ module.exports = inputs.map(input => {
                 },
                 templateExtension: '.tpl'
               }),
-              postcss(),
-              uglify()
+              sass({
+                  insert: true
+              }),
+            //   uglify()
         ]
     };
 });
